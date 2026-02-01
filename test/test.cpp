@@ -70,15 +70,98 @@ TEST_CASE("Function: IQR 2", "[given]") {
     }
 }
 
+//my own test cases: 
+TEST_CASE("Function: all values are the same", "[test1]") {
+	std::vector<int> v = {2, 2, 2, 2, 2};
+	Node* head = nullptr;
+	for(int i: v)
+		head = insertEnd(head, i);
+
+	REQUIRE(interQuartile(head) == 0.0);
+	
+    while (head != nullptr) 
+    {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+    }
+}
+
+TEST_CASE("Function: Negatives", "[test2]") {
+	std::vector<int> v = {-8, -5, -4, -3, -2};
+	Node* head = nullptr;
+	for(int i: v)
+		head = insertEnd(head, i);
+
+	REQUIRE(interQuartile(head) == 4.0);
+	
+    while (head != nullptr) 
+    {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+    }
+}
+
+TEST_CASE("Function: large gaps", "[test3]") {
+	std::vector<int> v = {1, 2, 60, 100, 200};
+	Node* head = nullptr;
+	for(int i: v)
+		head = insertEnd(head, i);
+
+	REQUIRE(interQuartile(head) == 148.5);
+	
+    while (head != nullptr) 
+    {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+    }
+} 
+
+TEST_CASE("Function: lots of repeats", "[test4]") {
+	std::vector<int> v = {1, 2, 2, 2, 3, 4, 4, 4, 5};
+	Node* head = nullptr;
+	for(int i: v)
+		head = insertEnd(head, i);
+
+	REQUIRE(interQuartile(head) == 2.0);
+	
+    while (head != nullptr) 
+    {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+    }
+}
+
+TEST_CASE("Function: min ammount, edge case", "[test5]") {
+	std::vector<int> v = {4, 4, 4, 4};
+	Node* head = nullptr;
+	for(int i: v)
+		head = insertEnd(head, i);
+
+	REQUIRE(interQuartile(head) == 0.0);
+	
+    while (head != nullptr) 
+    {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+    }
+}
+
+
+
 // uncomment these and put the correct values in the REQUIRE blocks
 
-/* TEST_CASE("Function: IQR 3", "[output_hidden]") {
+TEST_CASE("Function: IQR 3", "[output_hidden]") {
 	std::vector<int> v = {1, 8, 15, 43, 82, 101, 110, 2456, 55345, 137556};
 	Node* head = nullptr;
 	for(int i: v)
 		head = insertEnd(head, i);
 
-	REQUIRE(interQuartile(head) == ?);
+	REQUIRE(interQuartile(head) == 2441.0);
 	
     while (head != nullptr) 
     {
@@ -86,15 +169,15 @@ TEST_CASE("Function: IQR 2", "[given]") {
         head = head->next;
         delete temp;
     }
-} */
+} 
 
-/* TEST_CASE("Function: IQR 4", "[output_hidden]") {
+TEST_CASE("Function: IQR 4", "[output_hidden]") {
 	std::vector<int> v = {2, 4, 4, 5, 6, 7, 8, 9, 10};
 	Node* head = nullptr;
 	for(int i: v)
 		head = insertEnd(head, i);
 
-	REQUIRE(interQuartile(head) == ?);
+	REQUIRE(interQuartile(head) == 4.5);
 	
     while (head != nullptr) 
     {
@@ -102,15 +185,15 @@ TEST_CASE("Function: IQR 2", "[given]") {
         head = head->next;
         delete temp;
     }
-} */
+} 
 
-/* TEST_CASE("Function: IQR 5", "[output_hidden]") {
+TEST_CASE("Function: IQR 5", "[output_hidden]") {
 	std::vector<int> v = {1, 8, 15, 43, 82, 101, 110, 2456, 55345, 137556, 137576};
 	Node* head = nullptr;
 	for(int i: v)
 		head = insertEnd(head, i);
 
-	REQUIRE(interQuartile(head) == ?);
+	REQUIRE(interQuartile(head) == 55330.0);
 	
     while (head != nullptr) 
     {
@@ -118,4 +201,4 @@ TEST_CASE("Function: IQR 2", "[given]") {
         head = head->next;
         delete temp;
     }
-} */
+} 
